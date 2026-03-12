@@ -1,0 +1,28 @@
+enable
+configure terminal
+hostname R2
+interface fa1/0
+ip address 192.168.24.17 255.255.255.240
+no shutdown
+exit
+ip dhcp excluded-address 192.168.24.17
+ip dhcp pool LAN_R2
+network 192.168.24.16 255.255.255.240
+default-router 192.168.24.17
+dns-server 8.8.8.8
+exit
+interface se2/0
+ip address 192.168.24.130 255.255.255.240
+no shutdown
+exit
+interface se3/0
+ip address 192.168.24.145 255.255.255.240
+no shutdown
+exit
+router rip
+version 2
+no auto-summary
+network 192.168.24.16
+network 192.168.24.128
+network 192.168.24.144
+exit

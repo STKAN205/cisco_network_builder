@@ -1,0 +1,23 @@
+enable
+configure terminal
+hostname R8
+interface fa1/0
+ip address 192.168.24.113 255.255.255.240
+no shutdown
+exit
+ip dhcp excluded-address 192.168.24.113
+ip dhcp pool LAN_R8
+network 192.168.24.112 255.255.255.240
+default-router 192.168.24.113
+dns-server 8.8.8.8
+exit
+interface se2/0
+ip address 192.168.24.226 255.255.255.240
+no shutdown
+exit
+router rip
+version 2
+no auto-summary
+network 192.168.24.112
+network 192.168.24.224
+exit
